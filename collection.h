@@ -12,12 +12,12 @@
 #define COLLECTION_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Trajet.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 struct Cellule {
-	Trajet *pt;
+	const Trajet *pt;
 	struct Cellule *suivant;
 };
 typedef struct Cellule Cellule;
@@ -29,7 +29,7 @@ typedef struct Cellule Cellule;
 //
 //------------------------------------------------------------------------
 
-class Collection :
+class Collection
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -41,19 +41,19 @@ public:
     	//
 	// Contrat : Aucun.
 	
-	Trajet *GetPremier() const;
+	const Trajet *GetPremier() const;
 	// Mode d'emploi :
     	// Recoupere le premier element ajoute dans la collection.
     	//
 	// Contrat : Aucun.
 	
-	Trajet *GetDernier() const;
+	const Trajet *GetDernier() const;
 	// Mode d'emploi :
     	// Recoupere le dernier element ajoute dans la collection.
 	//
     	// Contrat : Aucun.
 	
-	Trajet* Rechercher(const char *depart, const char *arrivee) const;
+	const Trajet* Rechercher(const char *depart, const char *arrivee) const;
 	// Mode d'emploi :
 	// Trouve un trajet dans le catalogue partant de `depart`
 	// et arrivant dans `arrive` et le renvoie, s'il existe.

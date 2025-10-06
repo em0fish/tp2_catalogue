@@ -29,7 +29,7 @@ using namespace std;
 bool Collection::Ajouter(const Trajet* pt)
 // Algorithme :
 {
-	Cellule *nouvelleCellule = (Cellule*)malloc(sizeof(Cellule));
+	Cellule *nouvelleCellule = new Cellule;
 	nouvelleCellule->pt = pt;
 	nouvelleCellule->suivant = nullptr;
 
@@ -49,28 +49,28 @@ void Collection::Afficher() const
 	}
 } //------ Fin de Afficher()
 
-Trajet *Collection::Rechercher(
+const Trajet *Collection::Rechercher(
 		const char *depart, const char *arrivee) const
 {
 	for (Cellule *c = premier; c; c = c->suivant)
-	{	if (!strcmp(c->t.getVilleDepart(), depart)
-		&& !strcmp(c->t.getVilleArrivee(), arrivee)
-		{	return &(c->pt);	
+	{	if (!strcmp(c->pt->GetVilleDepart(), depart)
+		&& !strcmp(c->pt->GetVilleArrivee(), arrivee))
+		{	return c->pt;
 		}
 	}
 	return NULL;
 }
 
-Trajet *Collection::GetPremier()
+const Trajet *Collection::GetPremier() const
 // Algorithme :
 {	
-	return &(premier->pt);
+	return premier->pt;
 } //----- Fin de GetPremier
 
-Trajet *Collection::GetDernier()
+const Trajet *Collection::GetDernier() const
 // Algorithme :
 {	
-	return &(dernier->pt);
+	return dernier->pt;
 } //----- Fin de GetDernier
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -124,6 +124,6 @@ void Collection::supprimer(Cellule *premier)
 	if (premier)
 	{
 		supprimer(premier->suivant);
-		free(premier);
+		delete premier;
 	}
 }
