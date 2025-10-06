@@ -1,8 +1,8 @@
 /*************************************************************************
 TrajetSimple  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $ANNEE$ par $AUTEUR$
+    début                : 06/10/2025
+    copyright            : (C) 2025 par PICQUART Samuel & FISCHEROVA Ema
     e-mail               : $EMAIL$
 *************************************************************************/
 
@@ -28,20 +28,24 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void TrajetSimple::Afficher() const {
+void TrajetSimple::Afficher() const
+{
     cout << villeDepart << " -> " << villeArrivee << " (" << moyenDeTransport << ")" << endl;
 }
 
 
-const char * TrajetSimple::GetVilleDepart() const {
+const char * TrajetSimple::GetVilleDepart() const
+{
     return this->villeDepart;
 } //----- Fin de getVilleDepart
 
-const char * TrajetSimple::GetVilleArrivee() const {
+const char * TrajetSimple::GetVilleArrivee() const
+{
     return villeArrivee;
 } //----- Fin de getVilleArrivee
 
-const char * TrajetSimple::GetMoyenDeTransport() const {
+const char * TrajetSimple::GetMoyenDeTransport() const
+{
     return moyenDeTransport;
 } //----- Fin de getMoyenDeTransport
 
