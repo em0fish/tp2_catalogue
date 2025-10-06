@@ -1,8 +1,8 @@
 /*************************************************************************
 main  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $ANNEE$ par $AUTEUR$
+    début                : 06/10/2025
+    copyright            : (C) 2025 par PICQUART Samuel & FISCHEROVA Ema
     e-mail               : $EMAIL$
 *************************************************************************/
 
