@@ -1,5 +1,5 @@
 /*************************************************************************
-                       Collection  -  description
+                         Outils  -  description
                              -------------------
     début                : 02/10/2025
     copyright            : (C) 2025 par PICQUART Samuel, FISCHEROVA Ema  
@@ -7,12 +7,12 @@
     			   ema.fischerova@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface du module <Xxx> (fichier Xxx.h) -------------------
-#if ! defined (UTILS_H )
-#define UTILS_H
+//-------- Interface du module <Outils> (fichier outils.h) ---------------
+#if ! defined (OUTILS_H )
+#define OUTILS_H
 
 //------------------------------------------------------------------------
-// Rôle du module <Xxx>
+// Rôle du module <Outils>
 //
 //------------------------------------------------------------------------
 
@@ -33,11 +33,11 @@ void saisieInt(int* adresse, int limitInf,int limitSup);
 //
 // Contrat : Aucun.
 
-void saisieString(char* adresse);
+void saisieString(char** adresse, const char* message);
 // Mode d'emploi :
 // Function qui permet une saisie controlee d'un string, d'un
 // longueur au max 99 chars.
 //
 // Contrat : Aucun.
 
-#endif // UTILS_H
+#endif // OUTILS_H
