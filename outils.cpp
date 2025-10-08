@@ -1,5 +1,5 @@
 /*************************************************************************
-                       Collection  -  description
+                       Outils -  description
                              -------------------
     début                : 02/10/2025
     copyright            : (C) 2025 par PICQUART Samuel, FISCHEROVA Ema  
@@ -8,13 +8,13 @@
 
 *************************************************************************/
 
-//---------- Réalisation du module <Utils> (fichier utils.cpp) ---------------
+//---------- Réalisation du module <Outils> (fichier outils.cpp) ---------
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //-------------------------------------------------------- Include système
 
 //------------------------------------------------------ Include personnel
-#include "utils.h"
+#include "outils.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -62,12 +62,13 @@ bool saisieInt (int* adresse, int limitInf, int limitSup)
 	return true
 } //----- fin de saisieInt
  
-bool saisieString(char **adresse)
+bool saisieString(char **adresse, 
+	const char *message = "Veuillez saisir un string de longueur au plus 99\n")
 //Algorithme :
 //
 {	char tmp[100];
 
-	printf("Veuillez saisir un string de longueur au plus 99\n");
+	printf("%s",message);
 	scanf("%s", tmp);
 
 	if (feof(stdin)) return false;
