@@ -1,8 +1,10 @@
+#include <iostream>
+
 /*************************************************************************
                        Collection  -  description
                              -------------------
     début                : 02/10/2025
-    copyright            : (C) 2025 par PICQUART Samuel, FISCHEROVA Ema  
+    copyright            : (C) 2025 par PICQUART Samuel, FISCHEROVA Ema
     e-mail               : samuel.picquart@insa-lyon.fr
     			   ema.fischerova@insa-lyon.fr
 
@@ -13,9 +15,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
-#include <iostream>
 #include <string.h>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "collection.h"
@@ -28,13 +29,35 @@ using namespace std;
 
 bool Collection::Ajouter(const Trajet* pt)
 // Algorithme :
+// - Validation des pointeurs pour éviter les segfaults.
+// -  insertion en fin de liste.
+// - Mise à jour cohérente de 'premier' et 'dernier'.
 {
-	Cellule *nouvelleCellule = new Cellule;
-	nouvelleCellule->pt = pt;
-	nouvelleCellule->suivant = nullptr;
+    // Vérifie que le pointeur de trajet est valide
+    if (pt == nullptr)
+    {
+        return false; // Rien à ajouter
+    }
 
-	dernier->suivant = nouvelleCellule;
-	dernier = nouvelleCellule;
+    Cellule *nouvelleCellule = new Cellule;
+
+    nouvelleCellule->pt = pt;
+    nouvelleCellule->suivant = nullptr;
+
+    // Si la liste est vide, premier et dernier pointent sur la nouvelle cellule
+    if (dernier == nullptr)
+    {
+        premier = nouvelleCellule;
+        dernier = nouvelleCellule;
+    }
+	// Liste non vide: chaîne l'élément en fin de liste
+    else
+    {
+        dernier->suivant = nouvelleCellule;
+        dernier = nouvelleCellule;
+    }
+
+    return true;
 } //----- Fin de Ajouter
 
 void Collection::Afficher() const
@@ -63,23 +86,15 @@ const Trajet *Collection::Rechercher(
 
 const Trajet *Collection::GetPremier() const
 // Algorithme :
-{	
-	return premier->pt;
+{
+    return premier ? premier->pt : nullptr;
 } //----- Fin de GetPremier
 
 const Trajet *Collection::GetDernier() const
 // Algorithme :
-{	
-	return dernier->pt;
-} //----- Fin de GetDernier
-
-//------------------------------------------------- Surcharge d'opérateurs
-Collection & Collection::operator = ( const Collection & uneCollection )
-// Algorithme :
-//
 {
-} //----- Fin de operator =
-
+    return dernier ? dernier->pt : nullptr;
+} //----- Fin de GetDernier
 
 //-------------------------------------------- Constructeurs - destructeur
 Collection::Collection ( const Collection & uneCollection )
