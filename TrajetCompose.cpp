@@ -11,8 +11,8 @@ TrajetCompose  -  description
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
@@ -30,13 +30,30 @@ using namespace std;
 
 void TrajetCompose::Afficher() const
 {
-    cout << "TrajetCompose : " << endl;
+    cout << "########### TrajetCompose ###########" << endl;
     sousTrajets.Afficher();
+    cout << "######### Fin TrajetCompose #########" << endl;
 } //----- Fin de Afficher
 
 bool TrajetCompose::Ajouter (Trajet * unTrajet)
 {
-    if (strcmp(unTrajet->GetVilleDepart(), this->GetVilleArrivee()) == 0)
+    if (unTrajet == nullptr)
+    {
+        return false;
+    }
+
+    // Si aucun sous-trajet ajouter
+    const Trajet* dernierSousTrajet = sousTrajets.GetDernier();
+    if (dernierSousTrajet == nullptr)
+    {
+        return sousTrajets.Ajouter(unTrajet);
+    }
+
+    // Sinon, vérifier la continuité: arrivée courante == départ du nouveau puis ajouter
+    const char* arriveeCourante = dernierSousTrajet->GetVilleArrivee();
+    const char* departNouveau = unTrajet->GetVilleDepart();
+
+    if (arriveeCourante != nullptr && departNouveau != nullptr && strcmp(departNouveau, arriveeCourante) == 0)
     {
         return sousTrajets.Ajouter(unTrajet);
     }
@@ -46,12 +63,14 @@ bool TrajetCompose::Ajouter (Trajet * unTrajet)
 
 const char *TrajetCompose::GetVilleDepart() const
 {
-    return sousTrajets.GetPremier()->GetVilleDepart();
+    const Trajet* premierSousTrajet = sousTrajets.GetPremier();
+    return premierSousTrajet ? premierSousTrajet->GetVilleDepart() : nullptr;
 } //----- Fin de GetVilleDepart
 
 const char *TrajetCompose::GetVilleArrivee() const
 {
-    return sousTrajets.GetDernier()->GetVilleArrivee();
+    const Trajet* dernierSousTrajet = sousTrajets.GetDernier();
+    return dernierSousTrajet ? dernierSousTrajet->GetVilleArrivee() : nullptr;
 } //----- Fin de GetVilleArrivee
 
 

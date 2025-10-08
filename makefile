@@ -20,3 +20,16 @@ valgrind: main
 	
 clean:
 	rm *.o
+
+# Build & run test
+allTests: testTrajetSimple testTrajetCompose
+
+testTrajetSimple:
+	g++ Tests/TestTrajetSimple.cpp TrajetSimple.cpp TrajetCompose.cpp collection.cpp -o Tests/TestTrajetSimple $(FLAGS)
+	./Tests/TestTrajetSimple
+	rm Tests/TestTrajetSimple
+
+testTrajetCompose:
+	g++ Tests/TestTrajetCompose.cpp TrajetSimple.cpp TrajetCompose.cpp collection.cpp -o Tests/TestTrajetCompose $(FLAGS)
+	./Tests/TestTrajetCompose
+	rm Tests/TestTrajetCompose
