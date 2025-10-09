@@ -12,10 +12,11 @@ TestUtils  -  description
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "TestUtils.h"
+#include "TestOutils.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
+#define LEN_BUFFER 130
 
 //------------------------------------------------------------------ Types
 
@@ -44,11 +45,11 @@ static void TestSaisieString()
 //  - Utilise saisieString(buffer).
 {
     cout << "==== Test saisieString ====" << endl;
-    cout << "Tapez d'abord une chaîne de plus de 99 caractères (puis Entrée)," << endl;
+    cout << "Tapez d'abord une chaîne de plus de "<< LEN_BUFFER << " caractères (puis Entrée)," << endl;
     cout << "puis une chaîne courte" << endl;
-    char buffer[100];
+    char buffer[LEN_BUFFER];
     buffer[0] = '\0';
-    saisieString(buffer);
+    saisieString(buffer, LEN_BUFFER, "test saisie string");
     cout << "Chaîne lue: [" << buffer << "]" << endl;
 }
 

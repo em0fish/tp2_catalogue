@@ -18,10 +18,11 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "utils.h"
+#include "outils.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
+#define MAX_BUFFER_LEN 50
 
 //------------------------------------------------------------------ Types
 
@@ -81,19 +82,20 @@ void saisieInt (int* adresse, int limitInf, int limitSup)
         return;
     }
 } //----- fin de saisieInt
- 
-void saisieString(char* adresse)
+
+void saisieString(char* adresse, const size_t longueurEntree, const char* message)
 // Algorithme : lecture d'une ligne via cin.getline dans un buffer C, gestion dépassement et copie sécurisée.
 {
     if (adresse == nullptr)
     {
         return;
     }
+    size_t longueur = longueurEntree > MAX_BUFFER_LEN ? MAX_BUFFER_LEN : longueurEntree;
 
-    char tmp[100]; // capacité 100 -> on autorise jusqu'à 99 caractères + '\0'
+    char tmp[MAX_BUFFER_LEN]; // capacité maximale
     while (true)
     {
-        cout << "Veuillez saisir un string de longueur au plus 99" << endl;
+        cout << message << " (longueur entre 1 et " << longueur << ")" << endl;
 
         cin.getline(tmp, sizeof(tmp));
         if (!cin)
@@ -103,23 +105,28 @@ void saisieString(char* adresse)
                 // EOF: abandon sans modifier le buffer cible
                 return;
             }
-            // Dépassement (failbit) ou autre erreur: vider le reste de la ligne et réessayer
-            cerr << "Entrée trop longue (maximum 99 caractères). Veuillez réessayer." << endl;
+            // Trop long ou autre erreur: vider le reste de la ligne et réessayer
+            cerr << "Entrée trop longue (longueur entre 1 et " << longueur << "). Veuillez réessayer." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
 
-        // Longueur lue (sans le '\n')
         size_t len = strlen(tmp);
-        if (len > 99)
+        if (len < 1)
         {
-            cerr << "Entrée trop longue (maximum 99 caractères). Veuillez réessayer." << endl;
+            cerr << "Entrée trop courte (longueur entre 1 et " << longueur << "). Veuillez réessayer." << endl;
+            continue;
+        }
+
+        if (len > longueur)
+        {
+            cerr << "Entrée trop longue (longueur entre 1 et " << longueur << "). Veuillez réessayer." << endl;
             continue;
         }
 
         // Copier et garantir la terminaison NUL
-        strncpy(adresse, tmp, 99);
+        strncpy(adresse, tmp, len);
         adresse[len] = '\0';
         return;
     }

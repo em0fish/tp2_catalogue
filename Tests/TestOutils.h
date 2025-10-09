@@ -12,13 +12,13 @@ TestUtils  -  description
 
 //------------------------------------------------------------------------
 // Rôle du module <TestUtils>
-// Tests interactifs des fonctions de saisie définies dans utils.h
+// Tests interactifs des fonctions de saisie définies dans outils.h
 //
 //------------------------------------------------------------------------
 
 ///////////////////////////////////////////////////////////////  INCLUDE
 //--------------------------------------------------- Interfaces utilisées
-#include "../utils.h"
+#include "../outils.h"
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
