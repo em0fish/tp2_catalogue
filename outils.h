@@ -33,11 +33,14 @@ void saisieInt(int* adresse, int limitInf,int limitSup);
 //
 // Contrat : Aucun.
 
-void saisieString(char** adresse, const char* message);
+void saisieString(char* adresse, const size_t longueur = 50, const char* message = "Veuillez saisir un string");
 // Mode d'emploi :
-// Function qui permet une saisie controlee d'un string, d'un
-// longueur au max 99 chars.
+// Fonction qui permet une saisie contrôlée d'une chaîne C (char*), de
+// longueur au plus 99 caractères (sans compter le terminator '\0').
+// Le prompt affiche le message fourni (ou le message par défaut) suivi de
+// "(longueur max 99)". La chaîne lue est stockée dans `adresse` avec
+// terminaison NUL garantie.
 //
-// Contrat : Aucun.
+// Contrat : `adresse` doit pointer vers un buffer d'au moins 100 octets.
 
 #endif // OUTILS_H

@@ -22,7 +22,7 @@ clean:
 	rm *.o
 
 # Build & run test
-allTests: testTrajetSimple testTrajetCompose
+allTests: testTrajetSimple testTrajetCompose testOutils
 
 testTrajetSimple:
 	g++ Tests/TestTrajetSimple.cpp TrajetSimple.cpp TrajetCompose.cpp collection.cpp -o Tests/TestTrajetSimple $(FLAGS)
@@ -33,3 +33,8 @@ testTrajetCompose:
 	g++ Tests/TestTrajetCompose.cpp TrajetSimple.cpp TrajetCompose.cpp collection.cpp -o Tests/TestTrajetCompose $(FLAGS)
 	./Tests/TestTrajetCompose
 	rm Tests/TestTrajetCompose
+
+testOutils:
+	g++ Tests/TestOutils.cpp outils.cpp -o Tests/TestOutils $(FLAGS)
+	./Tests/TestOutils
+	rm Tests/TestOutils
