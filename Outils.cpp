@@ -83,9 +83,10 @@ bool saisieInt (int* adresse, int limitInf, int limitSup)
     }
 } //----- fin de saisieInt
 
-void saisieString(char* adresse, const char* message = "Veuillez saisir un string de longueur au plus 99\n")
+bool saisieString(char** addAdresse, const char* message = "Veuillez saisir un string de longueur au plus 99\n")
 // Algorithme : lecture d'une ligne via cin.getline dans un buffer C, gestion dépassement et copie sécurisée.
-{
+{	
+	char* adresse = *addAdresse;
     if (adresse == nullptr)
     {
         return false;
