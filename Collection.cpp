@@ -19,7 +19,7 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "collection.h"
+#include "Collection.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -39,7 +39,7 @@ bool Collection::Ajouter(const Trajet* pt)
         return false; // Rien à ajouter
     }
 
-    Cellule *nouvelleCellule = new Cellule;
+    Cellule *nouvelleCellule = (Cellule*)malloc(sizeof(Cellule));
 
     nouvelleCellule->pt = pt;
     nouvelleCellule->suivant = nullptr;
@@ -118,6 +118,18 @@ Collection::Collection ( )
 	dernier = nullptr;
 } //----- Fin de Collection
 
+Collection::Collection ( Cellule* premierElement )
+// Algorithme :
+//
+{	Cellule *iter = premierElement;
+	if (!premierElement) Collection();
+	else 
+	{	premier = premierElement;
+		while(iter->suivant)
+			iter = iter->suivant;
+		dernier = iter;
+	}
+} 
 
 Collection::~Collection ( )
 // Algorithme :
@@ -139,6 +151,7 @@ void Collection::supprimer(Cellule *premier)
 	if (premier)
 	{
 		supprimer(premier->suivant);
-		delete premier;
+		delete premier->pt;
+		free(premier);
 	}
 }

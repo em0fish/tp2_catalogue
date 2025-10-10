@@ -12,6 +12,7 @@ TrajetCompose  -  description
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -35,7 +36,7 @@ void TrajetCompose::Afficher() const
     cout << "######### Fin TrajetCompose #########" << endl;
 } //----- Fin de Afficher
 
-bool TrajetCompose::Ajouter (Trajet * unTrajet)
+bool TrajetCompose::Ajouter (const Trajet * unTrajet)
 {
     if (unTrajet == nullptr)
     {

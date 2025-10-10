@@ -13,7 +13,8 @@
 #define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "collection.h"
+#include "Collection.h"
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -38,14 +39,14 @@ public:
 	//
 	// Contrat : Aucun.
  
-	void Menu() const;
+	void Menu();
 	// Mode d'emploi :
 	// La methode qui gere toutes les interactions de l'utilisateur
 	// avec le catalogue.
 	//
 	// Contrat : Aucun.
  
-	void Afficher() const;
+	//void Afficher() const;
 	// Mode d'emploi :
 	//
 	// Contrat : Aucun.
@@ -83,6 +84,23 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
+
+private:
+	Trajet *saisieTS(int niveau);
+	// Mode d'emploi :
+	// Methode pour saisir un trajet simple.
+	// Si la construction ou la saisie echoue,
+	// un pointeur null et renvoyer.
+	// Le parametres `niveau` indique le niveau
+	// de recursion - c.a.d dans combien trajets 
+	// composes est emballe ce trajet simple.
+	//
+	// Contrat : `niveau` doit etre entre 0 et 75
+
+	Cellule *saisieTrajet(int niveau);
+	// Mode d'emploi :
+	// Methode qui sert a servir un trajet quelconque.
+	// 
 
 //----------------------------------------------------- Attributs protégés
 

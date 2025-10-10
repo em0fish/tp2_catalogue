@@ -18,11 +18,11 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "outils.h"
+#include "Outils.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
-#define MAX_BUFFER_LEN 50
+#define MAX_BUFFER_LEN 100
 
 //------------------------------------------------------------------ Types
 
@@ -43,12 +43,12 @@ using namespace std;
 //---------------------------------------------------- Fonctions publiques
 
 
-void saisieInt (int* adresse, int limitInf, int limitSup)
+bool saisieInt (int* adresse, int limitInf, int limitSup)
 // Algorithme : saisie contrôlée via cin/cout, validation bornes et nettoyage du flux.
 {
     if (adresse == nullptr)
     {
-        return;
+        return false;
     }
 
     int tmp;
@@ -60,7 +60,7 @@ void saisieInt (int* adresse, int limitInf, int limitSup)
         {
             if (cin.eof())
             {
-                return; // fin de fichier: on abandonne sans modifier *adresse
+                return false; // fin de fichier: on abandonne sans modifier *adresse
             }
             // entrée invalide: effacer l'état d'erreur et vider la ligne
             cout << "Entrée invalide: veuillez saisir un entier." << endl;
@@ -79,18 +79,18 @@ void saisieInt (int* adresse, int limitInf, int limitSup)
         }
 
         *adresse = tmp;
-        return;
+        return true;
     }
 } //----- fin de saisieInt
 
-void saisieString(char* adresse, const size_t longueurEntree, const char* message)
+void saisieString(char* adresse, const char* message = "Veuillez saisir un string de longueur au plus 99\n")
 // Algorithme : lecture d'une ligne via cin.getline dans un buffer C, gestion dépassement et copie sécurisée.
 {
     if (adresse == nullptr)
     {
-        return;
+        return false;
     }
-    size_t longueur = longueurEntree > MAX_BUFFER_LEN ? MAX_BUFFER_LEN : longueurEntree;
+    size_t longueur =  MAX_BUFFER_LEN-1;
 
     char tmp[MAX_BUFFER_LEN]; // capacité maximale
     while (true)
@@ -103,7 +103,7 @@ void saisieString(char* adresse, const size_t longueurEntree, const char* messag
             if (cin.eof())
             {
                 // EOF: abandon sans modifier le buffer cible
-                return;
+                return false;
             }
             // Trop long ou autre erreur: vider le reste de la ligne et réessayer
             cerr << "Entrée trop longue (longueur entre 1 et " << longueur << "). Veuillez réessayer." << endl;
@@ -128,6 +128,6 @@ void saisieString(char* adresse, const size_t longueurEntree, const char* messag
         // Copier et garantir la terminaison NUL
         strncpy(adresse, tmp, len);
         adresse[len] = '\0';
-        return;
+        return true;
     }
 }
