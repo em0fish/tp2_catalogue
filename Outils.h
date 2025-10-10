@@ -8,7 +8,7 @@
 *************************************************************************/
 
 //-------- Interface du module <Outils> (fichier outils.h) ---------------
-#if ! defined (OUTILS_H )
+#if ! defined ( OUTILS_H )
 #define OUTILS_H
 
 //------------------------------------------------------------------------
@@ -26,14 +26,14 @@
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 
-void saisieInt(int* adresse, int limitInf,int limitSup);
+bool saisieInt(int* adresse, int limitInf,int limitSup);
 // Mode d'emploi :
 // Function qui permet une saisie controlee d'un int, compris
 // entre `limitInf` et `limitSup`, a stocker dans `adresse`.
 //
 // Contrat : Aucun.
 
-void saisieString(char** adresse, const char* message);
+bool saisieString(char** adresse, const char* message);
 // Mode d'emploi :
 // Function qui permet une saisie controlee d'un string, d'un
 // longueur au max 99 chars.

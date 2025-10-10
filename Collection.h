@@ -8,7 +8,7 @@
 *************************************************************************/
 
 //----- Interface de la classe <Collection> (fichier Collection.h) -----
-#if ! defined COLLECTION_H
+#if ! defined ( COLLECTION_H )
 #define COLLECTION_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -78,6 +78,13 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     Collection ( const Collection & uneCollection );
     // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat : Aucun.
+
+    Collection ( Cellule* premierElement );
+    // Mode d'emploi :
+    // Construit une nouvelle collection a partir d'une liste
+    // chaine qui commence avec premierElement.
     //
     // Contrat : Aucun.
 

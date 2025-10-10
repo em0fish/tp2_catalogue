@@ -12,9 +12,10 @@
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //-------------------------------------------------------- Include système
-
+#include <stdio.h>
+#include <cstring>
 //------------------------------------------------------ Include personnel
-#include "outils.h"
+#include "Outils.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -59,7 +60,7 @@ bool saisieInt (int* adresse, int limitInf, int limitSup)
 		}
 	} while (tmp > limitSup || tmp < limitInf);
 	*adresse = tmp;
-	return true
+	return true;
 } //----- fin de saisieInt
  
 bool saisieString(char **adresse, 

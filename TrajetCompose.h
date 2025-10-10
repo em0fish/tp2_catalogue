@@ -12,7 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
-#include "collection.h"
+#include "Collection.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -36,7 +36,7 @@ public:
     // Contrat :
     //
 
-    bool Ajouter (Trajet * unTrajet);
+    bool Ajouter (const Trajet * unTrajet);
     // Mode d'emploi :
     // permet d'ajouter un trajet dans un trajet composé si la ville d'arrivee courante est égale à la ville de départ de unTrajet
     // Contrat :
